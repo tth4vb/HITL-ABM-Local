@@ -186,7 +186,7 @@ class HITLAdopt(Model):
         self.height = height
         self.width = width
         self.density = density
-        self.weeklyMarketingSpend = wms
+        self.weeklyCampaignSpend = wms
         self.weeklyTrainingSpend = wts
         self.weeklyUsabilitySpend = wus
 
@@ -244,7 +244,7 @@ class HITLAdopt(Model):
         self.algoEffect = self.algoAccuracy * 0.1
 
         #logic for adoption from marketing, For every 1000 of additional weekly marketing spend, we get 1 new trialer consultant each week 
-        for i in range (1,(int(self.weeklyMarketingSpend/100))):
+        for i in range (1,(int(self.weeklyCampaignSpend/100))):
             prospect = random.choice(self.schedule.agents)
             #change that agent's state to the next one up
             if prospect.condition == "Potential Trialer":

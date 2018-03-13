@@ -24,7 +24,7 @@ def agent_portrayal(agent):
 
 #creating interactive parameters for user to set in the visualization
 ae_slider = UserSettableParameter('slider', "Starting Algo Effectiveness", 0.5, 0.5, 0.8, 0.01)
-wms_slider = UserSettableParameter('slider', "Weekly Marketing Spend", 5000, 1000, 10000, 100)
+wms_slider = UserSettableParameter('slider', "Weekly Campaign Spend", 5000, 1000, 10000, 100)
 wts_slider = UserSettableParameter('slider', "Weekly Training Spend", 1000, 1000, 10000, 100)
 wus_slider = UserSettableParameter('slider', "Weekly Usability Spend", 1000, 1000, 10000, 100)
 ve_slider = UserSettableParameter('slider', "Visualization effectiveness (in % time saved)", 0.05, 0.01, 0.2, 0.01)
