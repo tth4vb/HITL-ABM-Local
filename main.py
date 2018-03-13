@@ -62,7 +62,7 @@ class Consultant(Agent):
             self.review = 1
         
         #benefits of model for trialers or adopters
-        if self.condition == "Trialer" or self.condition=="Adopter":
+        if self.condition == "Trialer" or self.condition=="Adopter" or self.condition=="Evangelist":
             
             #data collection takes longer because of tagging time
             self.dataCollectionDelta = self.dataCollection * self.taggingTime
@@ -90,6 +90,14 @@ class Consultant(Agent):
         self.outputValue = (self.dataCollection * 50) + (self.dataInterpretation * 100) + (self.identifyingActions*150) + (self.coaching * 200) + (self.review * 200)
         
         #this is the logic for spread of the model via word of mouth
+        if self.condition == "Evangelist":
+            neighbors = self.model.grid.get_neighbors(self.pos, moore=False)
+            for neighbor in neighbors:
+                if neighbor.condition == "Potential Trialer":
+                    if ((neighbor.personalityScore + neighbor.techFluencyScore)/2) + neighbor.timeEffect > 10:
+                        neighbor.condition = "Trialer"
+                    else:
+                        neighbor.timeEffect += 10
         if self.condition == "Trialer":
             random_num = np.random.randint(1,100)
             if (random_num + self.timeEffect) < 3:
@@ -110,6 +118,8 @@ class Consultant(Agent):
                         self.condition = "Adopter"
             else:
                 self.timeEffect += 1 * (1+(self.model.weeklyUsabilitySpend/10000))
+        if self.condition == "Adopter" and ((self.personalityScore + self.techFluencyScore)/2) + self.timeEffect > 90:
+            self.condition = "Evangelist"
 
 #now, we need to set up some methods for the data collectors
 #tracking output and its components
@@ -204,7 +214,7 @@ class HITLAdopt(Model):
         self.dc_tracker = DataCollector(model_reporters={"Average IA": compute_avg_ia})
         self.dc_adoption = DataCollector({"Potential Trialer": lambda m: self.count_type(m, "Potential Trialer"),
                                 "Trialer": lambda m: self.count_type(m, "Trialer"),
-                                "Adopter": lambda m: self.count_type(m, "Adopter"), "Defector": lambda m: self.count_type(m, "Defector")})
+                                "Adopter": lambda m: self.count_type(m, "Adopter"), "Defector": lambda m: self.count_type(m, "Defector"), "Evangelist": lambda m: self.count_type(m, "Evangelist")})
         self.dc_trialers =DataCollector({"Trialer": lambda m: self.count_type(m, "Trialer")})
         self.dc_algo = DataCollector({"Algo Effect": compute_algo_effect})
         
