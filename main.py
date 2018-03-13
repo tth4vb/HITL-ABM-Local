@@ -238,7 +238,9 @@ class HITLAdopt(Model):
     def step(self):
         
         ##update algorithm accuracy, data instances, and effect for new weekly data input
-        self.learningRate = 10000/self.dataInstances/13
+        self.learningRate = 10000/self.dataInstances/13 - ((self.count_type(self, "Trialer") + 
+                                                           self.count_type(self, "Adopter") + 
+                                                           self.count_type(self, "Evangelist"))/1000)
         self.algoAccuracy += self.learningRate
         self.dataInstances += self.trainingDataWeeklyInput
         self.algoEffect = self.algoAccuracy * 0.1
