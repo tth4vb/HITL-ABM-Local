@@ -11,6 +11,8 @@ from mesa.space import Grid
 from mesa.datacollection import DataCollector
 from mesa.batchrunner import BatchRunner
 
+
+
 #defining the consultant class
 class Consultant(Agent):
    
@@ -45,7 +47,14 @@ class Consultant(Agent):
         self.taggingTime = 0.1 - self.model.algoEffect
         
         #the base cases, aka what happens if the user has not or is not using HITL solution
-        if self.condition == "Potential Trailer":
+        if self.condition == "Potential Trialer":
+            self.dataCollection = 5
+            self.dataInterpretation = 2
+            self.identifyingActions = 2
+            self.coaching = 10
+            self.review = 1
+            
+        if self.condition == "Defector":
             self.dataCollection = 5
             self.dataInterpretation = 2
             self.identifyingActions = 2
@@ -83,8 +92,12 @@ class Consultant(Agent):
         #this is the logic for spread of the model via word of mouth
         if self.condition == "Trialer":
             random_num = np.random.randint(1,100)
-            if (random_num + self.timeEffect) < 70:
-                self.condition == "PotentialTrialer"
+            if (random_num + self.timeEffect) < 3:
+                self.condition = "Defector"
+            
+            elif (random_num + self.timeEffect) < 20:
+                self.condition = "PotentialTrialer"
+            
             else:  
                 neighbors = self.model.grid.get_neighbors(self.pos, moore=False)
                 for neighbor in neighbors:
@@ -97,6 +110,60 @@ class Consultant(Agent):
                         self.condition = "Adopter"
             else:
                 self.timeEffect += 1 * (1+(self.model.weeklyUsabilitySpend/10000))
+
+#now, we need to set up some methods for the data collectors
+#tracking output and its components
+
+def compute_avg_output(model):
+    agent_outputs = [agent.outputValue for agent in model.schedule.agents]
+    avg_output = np.mean(agent_outputs)
+    return avg_output
+
+#tracking/computing components
+def compute_avg_dc (model):
+    agent_dc = [agent.dataCollection for agent in model.schedule.agents]
+    avg_dc = np.mean(agent_dc)
+    return avg_dc
+def compute_avg_di (model):
+    agent_di = [agent.dataInterpretation for agent in model.schedule.agents]
+    avg_di = np.mean(agent_di)
+    return avg_di
+def compute_avg_ia (model):
+    agent_ia = [agent.identifyingActions for agent in model.schedule.agents]
+    avg_ia = np.mean(agent_ia)
+    return avg_ia
+def compute_avg_coaching (model):
+    agent_coaching = [agent.coaching for agent in model.schedule.agents]
+    avg_coaching = np.mean(agent_coaching)
+    return avg_coaching
+def compute_avg_review (model):
+    agent_review = [agent.review for agent in model.schedule.agents]
+    avg_review = np.mean(agent_review)
+    return avg_review
+
+#tracking algorithm accuracy
+def compute_algo_accuracy (model):
+    algoAccuracy = model.algoAccuracy
+    return algoAccuracy
+
+def compute_algo_effect (model):
+    algoEffect = model.algoEffect
+    return algoEffect
+
+#tracking time deltas
+def compute_avg_coaching_delta (model):
+    agent_acd = [agent.coachingDelta for agent in model.schedule.agents if agent.condition == "Trialer" or "Adopter"]
+    avg_acd = np.mean(agent_acd)
+    return avg_acd
+
+#tracking advantages of algo
+def hitl_adv_differential (model):
+    agent_output_differentials = [(agent.outputValue - 2950) for agent in model.schedule.agents]
+    avg_od = np.mean(agent_output_differentials)
+    totalDifferential = avg_od * len(agent_output_differentials)
+    return totalDifferential
+
+                        
 
 
 #now, we're defining the model class
@@ -137,7 +204,7 @@ class HITLAdopt(Model):
         self.dc_tracker = DataCollector(model_reporters={"Average IA": compute_avg_ia})
         self.dc_adoption = DataCollector({"Potential Trialer": lambda m: self.count_type(m, "Potential Trialer"),
                                 "Trialer": lambda m: self.count_type(m, "Trialer"),
-                                "Adopter": lambda m: self.count_type(m, "Adopter")})
+                                "Adopter": lambda m: self.count_type(m, "Adopter"), "Defector": lambda m: self.count_type(m, "Defector")})
         self.dc_trialers =DataCollector({"Trialer": lambda m: self.count_type(m, "Trialer")})
         self.dc_algo = DataCollector({"Algo Effect": compute_algo_effect})
         
@@ -213,56 +280,3 @@ class HITLAdopt(Model):
         return count
     
     
-#now, we need to set up some methods for the data collectors
-#tracking output and its components
-
-def compute_avg_output(model):
-    agent_outputs = [agent.outputValue for agent in model.schedule.agents]
-    avg_output = np.mean(agent_outputs)
-    return avg_output
-
-#tracking/computing components
-def compute_avg_dc (model):
-    agent_dc = [agent.dataCollection for agent in model.schedule.agents]
-    avg_dc = np.mean(agent_dc)
-    return avg_dc
-def compute_avg_di (model):
-    agent_di = [agent.dataInterpretation for agent in model.schedule.agents]
-    avg_di = np.mean(agent_di)
-    return avg_di
-def compute_avg_ia (model):
-    agent_ia = [agent.identifyingActions for agent in model.schedule.agents]
-    avg_ia = np.mean(agent_ia)
-    return avg_ia
-def compute_avg_coaching (model):
-    agent_coaching = [agent.coaching for agent in model.schedule.agents]
-    avg_coaching = np.mean(agent_coaching)
-    return avg_coaching
-def compute_avg_review (model):
-    agent_review = [agent.review for agent in model.schedule.agents]
-    avg_review = np.mean(agent_review)
-    return avg_review
-
-#tracking algorithm accuracy
-def compute_algo_accuracy (model):
-    algoAccuracy = model.algoAccuracy
-    return algoAccuracy
-
-def compute_algo_effect (model):
-    algoEffect = model.algoEffect
-    return algoEffect
-
-#tracking time deltas
-def compute_avg_coaching_delta (model):
-    agent_acd = [agent.coachingDelta for agent in model.schedule.agents if agent.condition == "Trialer" or "Adopter"]
-    avg_acd = np.mean(agent_acd)
-    return avg_acd
-
-#tracking advantages of algo
-def hitl_adv_differential (model):
-    agent_output_differentials = [(agent.outputValue - 2950) for agent in model.schedule.agents]
-    avg_od = np.mean(agent_output_differentials)
-    totalDifferential = avg_od * len(agent_output_differentials)
-    return totalDifferential
-
-                        
