@@ -300,6 +300,7 @@ class HITLAdopt(Model):
         self.dc_tracker.collect(self)
         self.dc_algo.collect(self)
         self.dc_trialers.collect(self)
+        self.dc_master.collect(self)
 
         #abandoned logic for stopping model - it was originally when there were no more trialers, now we just give it a set number of steps
         '''
