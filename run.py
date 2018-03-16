@@ -1,13 +1,17 @@
 from main import *
+import pandas as pd
+import numpy as np
+
 
 model = HITLAdopt(50, 50, 0.8, 5000, 1000, 1000, 10000, 0.05, 0.5)
 for i in range(100):
     model.step()
 
 #print results of master data collectors
-results = model.dc_master.get_model_vars_dataframe
+results = model.dc_master.get_model_vars_dataframe()
+
 #convert to json
-results_json = results.to_json("/Users/trevorhinkle/Desktop/AlloyWork/HITL_ABM_Local")
+results.to_json("/Users/trevorhinkle/Desktop/AlloyWork/HITL_ABM_Local/hitl_visualization_v1/src/data/model_output.json")
 
 
 '''#print results of output data collector
@@ -42,4 +46,4 @@ df.head()
 #create plot of results of batch run
 plt.scatter(df.ae, df.AlgoEffect)
 plt.xlim(0.5, 0.8)
-plt.ylim(0,.2)'''c
+plt.ylim(0,.2)'''
