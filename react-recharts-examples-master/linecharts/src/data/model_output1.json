@@ -1,8 +1,4 @@
-import React, { Component } from 'react';
-import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
-import './App.css';
-
-var masterJSON = JSON.parse({
+{
   "0": {
     "Adopter": 53,
     "Algo Accuracy": 0.5379230769,
@@ -1803,44 +1799,4 @@ var masterJSON = JSON.parse({
     "Total Differential in Population": 1.828044712e+61,
     "Trialer": 0
   }
-});
-  var data1=[];
-for (i=0; i<100; i++){
-  data1.push(masterJSON[i]);
-};
-
-const dataFrame = data1;
-/*const data = [
-
-      {name: '0', Adopter: 53, Trialer: 116, PotentialTrialer: 1828},
-      {name: '1', Adopter: 107, Trialer: 152, PotentialTrialer: 1710},
-      {name: '2', Adopter: 159, Trialer: 161, PotentialTrialer: 1615},
-      {name: '3', Adopter: 203, Trialer: 159, PotentialTrialer: 1537},
-      {name: '4', Adopter: 252, Trialer: 192, PotentialTrialer: 1435},
-      {name: '5', Adopter: 299, Trialer: 192, PotentialTrialer: 1355},
-      {name: '6', Adopter: 344, Trialer: 197, PotentialTrialer: 1270},
-      {name: '7', Adopter: 379, Trialer: 194, PotentialTrialer: 1206},
-      {name: '8', Adopter: 417, Trialer: 1184, PotentialTrialer: 1149},
-      {name: '9', Adopter: 458, Trialer: 161, PotentialTrialer: 1102},
-      {name: '10', Adopter: 497, Trialer: 143, PotentialTrialer: 1061},
-];*/
-
-class App extends Component {
-  render () {
-    return (
-      <LineChart width={600} height={300} data={dataFrame}
-            margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-       <XAxis dataKey="name"/>
-       <YAxis/>
-       <CartesianGrid strokeDasharray="3 3"/>
-       <Tooltip/>
-       <Legend />
-       <Line type="monotone" dataKey="Adopter" stroke="#8884d8" activeDot={{r: 8}}/>
-       <Line type="monotone" dataKey="Trialer" stroke="#82ca9d" />
-       <Line type="monotone" dataKey="PotentialTrialer" stroke="#000000" />
-      </LineChart>
-    );
-  }
 }
-
-export default App;
