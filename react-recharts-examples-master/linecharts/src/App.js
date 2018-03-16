@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 import './App.css';
 
-var masterJSON = JSON.parse({
+var masterJSON = {
   "0": {
     "Adopter": 53,
     "Algo Accuracy": 0.5379230769,
@@ -1803,13 +1803,11 @@ var masterJSON = JSON.parse({
     "Total Differential in Population": 1.828044712e+61,
     "Trialer": 0
   }
-});
-  var data1=[];
-for (i=0; i<100; i++){
-  data1.push(masterJSON[i]);
+}
+const dataFrame=[];
+for (var key in masterJSON){
+  dataFrame.push(masterJSON[key]);
 };
-
-const dataFrame = data1;
 /*const data = [
 
       {name: '0', Adopter: 53, Trialer: 116, PotentialTrialer: 1828},
@@ -1828,7 +1826,8 @@ const dataFrame = data1;
 class App extends Component {
   render () {
     return (
-      <LineChart width={600} height={300} data={dataFrame}
+      <div>
+      <LineChart width={600} height={400} data={dataFrame}
             margin={{top: 5, right: 30, left: 20, bottom: 5}}>
        <XAxis dataKey="name"/>
        <YAxis/>
@@ -1837,8 +1836,21 @@ class App extends Component {
        <Legend />
        <Line type="monotone" dataKey="Adopter" stroke="#8884d8" activeDot={{r: 8}}/>
        <Line type="monotone" dataKey="Trialer" stroke="#82ca9d" />
-       <Line type="monotone" dataKey="PotentialTrialer" stroke="#000000" />
+       <Line type="monotone" dataKey="Potential Trialer" stroke="#000000" />
       </LineChart>
+      </div>
+      /*<div>
+      <LineChart width={600} height={400} data={dataFrame}
+            margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+       <XAxis dataKey="name"/>
+       <YAxis/>
+       <CartesianGrid strokeDasharray="3 3"/>
+       <Tooltip/>
+       <Legend />
+       <Line type="monotone" dataKey="Defector" stroke="#4286f4" />
+       <Line type="monotone" dataKey="Evangelist" stroke="#e5d600" />
+      </LineChart>
+      </div>*/
     );
   }
 }
