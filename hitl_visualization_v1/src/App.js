@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { XAxis, YAxis, CartesianGrid, Area, LineChart, Line, AreaChart, Tooltip,
+  ResponsiveContainer } from 'recharts';
 import logo from './logo.svg';
 import './App.css';
 
@@ -11,10 +13,16 @@ class App extends Component {
           <h1 className="App-title">Welcome to Alloy HITL Simulation</h1>
         </header>
         <p className="App-intro">
-          Place holder for eventual visualization
+          Visualization should appear below
         </p>
-        <p> new paragraph test</p>
         <TestClass/>
+        <LineChart width={500} height={300} data={data}>
+   <XAxis dataKey="name"/>
+   <YAxis/>
+   <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
+   <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+   <Line type="monotone" dataKey="pv" stroke="#82ca9d" />
+ </LineChart>
       </div>
     );
   }
