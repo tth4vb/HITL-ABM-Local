@@ -224,7 +224,7 @@ class HITLAdopt(Model):
                                 "Trialer": lambda m: self.count_type(m, "Trialer"),
                                 "Adopter": lambda m: self.count_type(m, "Adopter"), "Defector": lambda m: self.count_type(m, "Defector"), "Evangelist": lambda m: self.count_type(m, "Evangelist")})
         self.dc_trialers =DataCollector({"Trialer": lambda m: self.count_type(m, "Trialer")})
-        self.dc_algo = DataCollector({"Algo Effect": compute_algo_effect})
+        self.dc_algo = DataCollector({"Learning Rate": compute_learning_rate})
 
         self.dc_master=DataCollector({"Potential Trialer": lambda m: self.count_type(m, "Potential Trialer"),
                                 "Trialer": lambda m: self.count_type(m, "Trialer"),
@@ -265,7 +265,7 @@ class HITLAdopt(Model):
         ##update algorithm accuracy, data instances, and effect for new weekly data input
         self.learningRate = 10000/self.dataInstances/13 - ((self.count_type(self, "Trialer") +
                                                            self.count_type(self, "Adopter") +
-                                                           self.count_type(self, "Evangelist"))/1000)
+                                                           self.count_type(self, "Evangelist"))/1000000)
         self.algoAccuracy += self.learningRate
         self.dataInstances += self.trainingDataWeeklyInput
         self.algoEffect = self.algoAccuracy * 0.1
