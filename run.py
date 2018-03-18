@@ -9,7 +9,6 @@ for i in range(100):
 
 #print results of master data collectors
 results = model.dc_master.get_model_vars_dataframe()
-
 results.transpose()
 #convert to json
 results.transpose().to_json("/Users/trevorhinkle/Desktop/AlloyWork/HITL_ABM_Local/model_output2.json")
