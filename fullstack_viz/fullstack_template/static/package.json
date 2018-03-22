@@ -1,0 +1,22 @@
+{
+  "name": "static",
+  "version": "1.0.0",
+  "description": "v1 of a fullstack viz for hitl sim",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tth4vb/HITL-ABM-Local.git"
+  },
+  "author": "trevor hinkle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tth4vb/HITL-ABM-Local/issues"
+  },
+  "homepage": "https://github.com/tth4vb/HITL-ABM-Local#readme",
+  "devDependencies": {
+    "webpack": "^4.2.0"
+  }
+}
