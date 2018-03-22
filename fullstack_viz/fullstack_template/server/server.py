@@ -5,7 +5,7 @@ import random
 app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
 
 def get_hello():
-  greeting_list = [‘Ciao’, ‘Hei’, ‘Salut’, ‘Hola’, ‘Hallo’, ‘Hej’]
+  greeting_list = ['Ciao’, ‘Hei’, ‘Salut’, ‘Hola’, ‘Hallo’, ‘Hej']
   return random.choice(greeting_list)
 
 @app.route("/")
