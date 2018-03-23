@@ -16,7 +16,7 @@ export default class App extends React.Component {
         return (
             <PageHeader>
                 <div className='header-contents'>
-                <Hello name='hhhh' />
+                <Hello name='Hello' />
                 </div>
             </PageHeader>
         );
