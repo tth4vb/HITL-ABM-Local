@@ -7,18 +7,24 @@ var $ = require('jquery');
 export default class Hello extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {json};
+        this.state = {json:[]};
 
         // This binding is necessary to make `this` work in the callback
         this.getPythonJSON = this.getPythonJSON.bind(this);
     }
 
     implementJSON(json) {
-        this.setState({json: json});
+      console.log(json);
+      var dataFrame =[];
+      for (var key in json){
+        dataFrame.push(json[key]);
+      };
+      console.log(dataFrame);
+      this.setState({json: dataFrame});
     }
 
     getPythonJSON() {
-        $.get(window.location.href + 'hello', (data) => {
+        $.getJSON(window.location.href + 'hello', (data) => {
             console.log(data);
             this.implementJSON(data);
         });
@@ -27,6 +33,13 @@ export default class Hello extends React.Component {
     render () {
         return (
             <Grid>
+                <Row>
+                  <Col md={7} mdOffset={5}>
+                    <Button bsSize="large" bsStyle="danger" onClick={this.getPythonJSON}>
+                    Run Model
+                    </Button>
+                    </Col>
+                </Row>
                 <Row>
                 <Col md={7} mdOffset={5}>
                   <LineChart width={1400} height={400} data={this.state.json}
@@ -40,17 +53,10 @@ export default class Hello extends React.Component {
                         <Line type="monotone" dataKey="Trialer" stroke="#82ca9d" />
                         <Line type="monotone" dataKey="Potential Trialer" stroke="#000000" />
                     </LineChart>
-                    //<h1>{this.state.greeting}</h1>
                     <hr/>
                 </Col>
                 </Row>
-                <Row>
-                <Col md={7} mdOffset={5}>
-                    <Button bsSize="large" bsStyle="danger" onClick={this.getPythonJSON}>
-                    test test
-                    </Button>
-                </Col>
-                </Row>
+
             </Grid>
         );
     }
