@@ -35,7 +35,7 @@ export default class Hello extends React.Component {
                 <Row>
                 <Col md={7} mdOffset={5}>
                     <Button bsSize="large" bsStyle="danger" onClick={this.getPythonHello}>
-                    Say Hello!
+                    test test 
                     </Button>
                 </Col>
                 </Row>
