@@ -1,5 +1,7 @@
 
 import random
+import mesa
+import run_hitl
 from flask import Flask, render_template
 
 app = Flask(__name__, static_folder='../static/dist', template_folder='../static')
@@ -18,8 +20,7 @@ def hello():
 
 
 def get_hello():
-    greeting_list = ['Cia0', 'Hei', 'Salut', 'Hola', 'Hallo', 'Hej']
-    return random.choice(greeting_list)
+    return run_hitl.model_run()
 
 
 if __name__ == '__main__':
