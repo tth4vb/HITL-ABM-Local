@@ -1,5 +1,6 @@
 import React from "react";
 import Hello from "./Hello";
+import TestForm from "./TestForm";
 import { PageHeader } from "react-bootstrap";
 
 require('../css/fullstack.css');
@@ -16,7 +17,8 @@ export default class App extends React.Component {
         return (
             <PageHeader>
                 <div className='header-contents'>
-                <Hello className='hello' name='Hello' />
+                <TestForm />
+                <Hello name='Hello' />
                 </div>
             </PageHeader>
         );
