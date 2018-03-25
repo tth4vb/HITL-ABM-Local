@@ -40,7 +40,7 @@ export default class Hello extends React.Component {
             <br></br>
                 <Row>
                   <Col md={7} mdOffset={5}>
-                    <p style={helloStyle}> Once the model runs, the empty charts below will depict the model output over time for key KPIs</p>
+
                     <Button bsSize="large" bsStyle="danger" onClick={this.getPythonJSON}>
                     Run Model
                     </Button>

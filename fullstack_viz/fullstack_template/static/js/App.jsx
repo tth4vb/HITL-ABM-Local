@@ -6,6 +6,11 @@ import { PageHeader } from "react-bootstrap";
 require('../css/fullstack.css');
 var $ = require('jquery');
 
+const pStyle = {
+  fontSize: '18px',
+  float: 'none',
+  margin: '0 auto',
+};
 
 export default class App extends React.Component {
     constructor(props) {
@@ -17,8 +22,9 @@ export default class App extends React.Component {
         return (
             <PageHeader>
                 <div className='header-contents'>
-                <TestForm />
-                <Hello name='Hello' />
+                  <p style={pStyle}> Once the model runs, the empty charts below will depict the model output over time for key KPIs</p>
+                  <TestForm style={pStyle} />
+                  <Hello name='Hello' />
                 </div>
             </PageHeader>
         );
