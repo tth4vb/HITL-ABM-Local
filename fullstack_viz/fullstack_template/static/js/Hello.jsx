@@ -37,20 +37,25 @@ export default class Hello extends React.Component {
     render () {
         return (
             <Grid>
+            <br></br>
                 <Row>
                   <Col md={7} mdOffset={5}>
+                    <p style={helloStyle}> Once the model runs, the empty charts below will depict the model output over time for key KPIs</p>
                     <Button bsSize="large" bsStyle="danger" onClick={this.getPythonJSON}>
                     Run Model
                     </Button>
+
                     </Col>
-                    <p style={helloStyle}> Once the model runs, the empty charts below will depict the model output over time for key KPIs</p>
+
                 </Row>
+                <br></br>
+
                 <Row>
                 <Col style={helloStyle} md={7} mdOffset={5}>
                   <LineChart width={1400} height={400} data={this.state.json}
                         margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                         <XAxis dataKey="name"/>
-                        <YAxis/>
+                        <YAxis domain={[0, 2000]}/>
                         <CartesianGrid strokeDasharray="3 3"/>
                         <Tooltip/>
                         <Legend />
@@ -63,7 +68,7 @@ export default class Hello extends React.Component {
                     <LineChart width={1400} height={200} data={this.state.json}
                           margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                      <XAxis dataKey="name"/>
-                     <YAxis/>
+                     <YAxis domain={[0.5, 1]}/>
                      <CartesianGrid strokeDasharray="3 3"/>
                      <Tooltip/>
                      <Legend />
@@ -72,7 +77,7 @@ export default class Hello extends React.Component {
                     <LineChart width={1400} height={200} data={this.state.json}
                           margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                      <XAxis dataKey="name"/>
-                     <YAxis/>
+                     <YAxis domain={[2940, 2980]}/>
                      <CartesianGrid strokeDasharray="3 3"/>
                      <Tooltip/>
                      <Legend />
@@ -81,7 +86,7 @@ export default class Hello extends React.Component {
                     <LineChart width={1400} height={200} data={this.state.json}
                           margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                      <XAxis dataKey="name"/>
-                     <YAxis domain={2500, 3000}/>
+                     <YAxis domain={[0, 20000]}/>
                      <CartesianGrid strokeDasharray="3 3"/>
                      <Tooltip/>
                      <Legend />
