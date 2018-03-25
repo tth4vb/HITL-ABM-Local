@@ -4,6 +4,10 @@ import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'rec
 
 var $ = require('jquery');
 
+const helloStyle = {
+  fontSize: '18px',
+};
+
 export default class Hello extends React.Component {
     constructor(props) {
         super(props);
@@ -39,9 +43,10 @@ export default class Hello extends React.Component {
                     Run Model
                     </Button>
                     </Col>
+                    <p style={helloStyle}> Once the model runs, the empty charts below will depict the model output over time for key KPIs</p>
                 </Row>
                 <Row>
-                <Col md={7} mdOffset={5}>
+                <Col style={helloStyle} md={7} mdOffset={5}>
                   <LineChart width={1400} height={400} data={this.state.json}
                         margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                         <XAxis dataKey="name"/>
@@ -52,16 +57,8 @@ export default class Hello extends React.Component {
                         <Line type="monotone" dataKey="Adopter" stroke="#8884d8" activeDot={{r: 8}}/>
                         <Line type="monotone" dataKey="Trialer" stroke="#82ca9d" />
                         <Line type="monotone" dataKey="Potential Trialer" stroke="#000000" />
-                    </LineChart>
-                    <LineChart width={1400} height={200} data={this.state.json}
-                          margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-                     <XAxis dataKey="name"/>
-                     <YAxis/>
-                     <CartesianGrid strokeDasharray="3 3"/>
-                     <Tooltip/>
-                     <Legend />
-                     <Line type="monotone" dataKey="Defector" stroke="#4286f4" />
-                     <Line type="monotone" dataKey="Evangelist" stroke="#e5d600" />
+                        <Line type="monotone" dataKey="Defector" stroke="#4286f4" />
+                        <Line type="monotone" dataKey="Evangelist" stroke="#e5d600" />
                     </LineChart>
                     <LineChart width={1400} height={200} data={this.state.json}
                           margin={{top: 5, right: 30, left: 20, bottom: 5}}>
@@ -79,12 +76,12 @@ export default class Hello extends React.Component {
                      <CartesianGrid strokeDasharray="3 3"/>
                      <Tooltip/>
                      <Legend />
-                     <Line type="monotone" dataKey="Algo Accuracy Increase" stroke="#4286f4" />
+                     <Line type="monotone" dataKey="Avg Output Value Per Person" stroke="#4286f4" />
                     </LineChart>
                     <LineChart width={1400} height={200} data={this.state.json}
                           margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                      <XAxis dataKey="name"/>
-                     <YAxis/>
+                     <YAxis domain={2500, 3000}/>
                      <CartesianGrid strokeDasharray="3 3"/>
                      <Tooltip/>
                      <Legend />
