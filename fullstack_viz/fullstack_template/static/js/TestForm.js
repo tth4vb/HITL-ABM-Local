@@ -23,7 +23,7 @@ export default class TestForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Variable parameters submitted: ' + this.state.value);
+    alert('algo starting accuracy submitted: ' + this.state.ae);
     event.preventDefault();
   }
 
