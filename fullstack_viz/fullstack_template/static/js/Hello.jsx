@@ -5,7 +5,7 @@ import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'rec
 var $ = require('jquery');
 
 const helloStyle = {
-  fontSize: '18px',
+  fontSize: '16px',
 };
 
 export default class Hello extends React.Component {

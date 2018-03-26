@@ -7,7 +7,7 @@ require('../css/fullstack.css');
 var $ = require('jquery');
 
 const pStyle = {
-  fontSize: '18px',
+  fontSize: '16px',
   float: 'none',
   margin: '0 auto',
 };
