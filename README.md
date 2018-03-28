@@ -1,5 +1,3 @@
-# HITL-ABM-Local
-
 Description of model mechanics can be found in this google doc: https://docs.google.com/document/d/162qBuNkHv4L_qQShWwn8UYWsveY0C1g3cmckWGQUr9k/edit?usp=sharing
 
 How to run model:
@@ -11,4 +9,3 @@ How to run model:
 5. Open a browser window and paste the above address into it, and the app should load in that window.
 6. Click "Run Model" to run the model to populate the charts with the output
 7. Clicking the "Run Model" button again will re-run the model and produce new chart data (randomness built into the model means that a new run will have different results without modifying the input parameters).
-

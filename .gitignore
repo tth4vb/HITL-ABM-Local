@@ -1,0 +1,15 @@
+/server/__pycache__
+/server/Users
+/server/lib
+/server/bin
+/server/include
+/server/pip-selfcheck.json
+/server/pyvenv.cfg
+/server/run_hitl.pyc
+/server/hitl_model.pyc
+/server/server.pyc
+/server/man
+
+/.vscode
+
+/static/nodue_modules
