@@ -1,0 +1,15 @@
+/app/server/__pycache__
+/app/server/Users
+/app/server/lib
+/app/server/bin
+/app/server/include
+/app/server/pip-selfcheck.json
+/app/server/pyvenv.cfg
+/app/server/run_hitl.pyc
+/app/server/hitl_model.pyc
+/app/server/server.pyc
+/app/server/man
+
+/.vscode
+
+/.DS_Store
