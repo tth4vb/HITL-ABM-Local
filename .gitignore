@@ -1,15 +1,15 @@
-/server/__pycache__
-/server/Users
-/server/lib
-/server/bin
-/server/include
-/server/pip-selfcheck.json
-/server/pyvenv.cfg
-/server/run_hitl.pyc
-/server/hitl_model.pyc
-/server/server.pyc
-/server/man
+/app/server/__pycache__
+/app/server/Users
+/app/server/lib
+/app/server/bin
+/app/server/include
+/app/server/pip-selfcheck.json
+/app/server/pyvenv.cfg
+/app/server/run_hitl.pyc
+/app/server/hitl_model.pyc
+/app/server/server.pyc
+/app/server/man
 
 /.vscode
 
-/static/nodue_modules
+/.DS_Store
