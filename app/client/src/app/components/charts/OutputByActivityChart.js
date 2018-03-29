@@ -15,7 +15,7 @@ export default class UserTypeChart extends Component {
                     <Line type="monotone" dataKey="Avg Coaching Output" stroke="#4286f4" dot={false} />
                     <Line type="monotone" dataKey="Avg Review Output" stroke="#e5d600" dot={false} />
                     <XAxis dataKey='iteration' type='number' />
-                    <YAxis domain={[0,3]}/>
+                    <YAxis/>
                     <Tooltip/>
                     <Legend />
                 </LineChart>
