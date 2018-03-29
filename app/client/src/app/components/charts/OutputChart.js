@@ -10,7 +10,7 @@ export default class OutputChart extends Component {
                     data={modelData}
                 >
                     <XAxis dataKey='iteration' type='number' />
-                    <YAxis />
+                    <YAxis domain={[2900, 2975]}/>
                     <Tooltip/>
                     <Legend />
                     <Line type="monotone" dataKey="Avg Output Value Per Person" stroke="#4286f4" dot={false} />

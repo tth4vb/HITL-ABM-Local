@@ -10,7 +10,7 @@ export default class AlgorithmChart extends Component {
                     data={modelData}
                 >
                     <XAxis dataKey='iteration' type='number' />
-                    <YAxis />
+                    <YAxis/>
                     <Tooltip/>
                     <Legend />
                     <Line type="monotone" dataKey="Algo Accuracy" stroke="#4286f4" dot={false} />

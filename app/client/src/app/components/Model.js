@@ -5,6 +5,7 @@ import UserTypeChart from './charts/UserTypeChart'
 import AlgorithmChart from './charts/AlgorithmChart'
 import OutputChart from './charts/OutputChart'
 import DataSetChart from './charts/DataSetChart'
+import OutputByActivityChart from './charts/OutputByActivityChart'
 
 class Model extends Component {
 
@@ -20,6 +21,7 @@ class Model extends Component {
 
     render () {
         const { modelData } = this.props
+        console.log(modelData)
         return (
             <div>
                 <div className='row'>
@@ -40,6 +42,13 @@ class Model extends Component {
                 <div className='row'>
                     <div className='col col-12'>
                         <OutputChart
+                            modelData={modelData}
+                        />
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col col-12'>
+                        <OutputByActivityChart
                             modelData={modelData}
                         />
                     </div>
