@@ -79,7 +79,7 @@ class Consultant(Agent):
             self.dataCollection = 5 + self.dataCollectionDelta
             self.dataInterpretation = 2 + self.dataInterpretationDelta
             self.identifyingActions = 2 + self.identifyingActionsDelta
-            self.coaching = 10 + self.coachingDelta
+            self.coaching = 10 - self.coachingDelta
             self.review = 1 + self.reviewDelta
 
         #setting global variable of output value, given values of activity varaibles depending on agent state
@@ -127,23 +127,23 @@ def compute_avg_output(model):
 
 #tracking/computing components
 def compute_avg_dc (model):
-    agent_dc = [agent.dataCollection for agent in model.schedule.agents]
+    agent_dc = [agent.dataCollection for agent in model.schedule.agents if agent.condition == "Trialer" or "Adopter" or "Evangelist"]
     avg_dc = np.mean(agent_dc)
     return avg_dc
 def compute_avg_di (model):
-    agent_di = [agent.dataInterpretation for agent in model.schedule.agents]
+    agent_di = [agent.dataInterpretation for agent in model.schedule.agents if agent.condition == "Trialer" or "Adopter" or "Evangelist"]
     avg_di = np.mean(agent_di)
     return avg_di
 def compute_avg_ia (model):
-    agent_ia = [agent.identifyingActions for agent in model.schedule.agents]
+    agent_ia = [agent.identifyingActions for agent in model.schedule.agents if agent.condition == "Trialer" or "Adopter" or "Evangelist"]
     avg_ia = np.mean(agent_ia)
     return avg_ia
 def compute_avg_coaching (model):
-    agent_coaching = [agent.coaching for agent in model.schedule.agents]
+    agent_coaching = [agent.coaching for agent in model.schedule.agents if agent.condition == "Trialer" or "Adopter" or "Evangelist"]
     avg_coaching = np.mean(agent_coaching)
     return avg_coaching
 def compute_avg_review (model):
-    agent_review = [agent.review for agent in model.schedule.agents]
+    agent_review = [agent.review for agent in model.schedule.agents if agent.condition == "Trialer" or "Adopter" or "Evangelist"]
     avg_review = np.mean(agent_review)
     return avg_review
 
@@ -166,7 +166,7 @@ def compute_algo_effect (model):
 
 #tracking time deltas
 def compute_avg_coaching_delta (model):
-    agent_acd = [agent.coachingDelta for agent in model.schedule.agents if agent.condition == "Trialer" or "Adopter"]
+    agent_acd = [agent.coachingDelta for agent in model.schedule.agents if agent.condition == "Trialer" or "Adopter" or "Evangelist"]
     avg_acd = np.mean(agent_acd)
     return avg_acd
 
@@ -301,3 +301,4 @@ class HITLAdopt(Model):
             if consultant.condition == consultant_condition:
                 count += 1
         return count
+
