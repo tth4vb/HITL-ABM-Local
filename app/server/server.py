@@ -22,6 +22,5 @@ def hello():
 def get_hello():
     return run_hitl.model_run()
 
-
 if __name__ == '__main__':
     app.run()

@@ -110,11 +110,11 @@ class Consultant(Agent):
                             neighbor.condition = "Trialer"
                         else:
                             neighbor.timeEffect += 5
-            if ((self.personalityScore + self.techFluencyScore)/2) + self.timeEffect > 80:
+            if ((self.personalityScore + self.techFluencyScore)/2) + self.timeEffect > 75:
                         self.condition = "Adopter"
             else:
                 self.timeEffect += 1 * (1+(self.model.weeklyUsabilitySpend/10000))
-        if self.condition == "Adopter" and ((self.personalityScore + self.techFluencyScore)/2) + self.timeEffect > 90:
+        if self.condition == "Adopter" and ((self.personalityScore + self.techFluencyScore)/2) + self.timeEffect > 80:
             self.condition = "Evangelist"
 
 #now, we need to set up some methods for the data collectors
